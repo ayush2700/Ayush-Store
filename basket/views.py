@@ -7,10 +7,15 @@ from .basket import Basket
 
 
 def basket_summary(request):
+   
     basket = Basket(request)
+    
     return render(request, 'store/basket/summary.html', {'basket': basket})
 
 def checkout(request):
+    if request.method == 'POST':
+        basket = Basket(request)
+        basket.clear()
     return render(request, 'store/checkout.html')
 
 
